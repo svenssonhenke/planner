@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectList from './projectList';
 import './styles/css/amazium.css';
-import './styles/css/index.css';
+import './styles/css/app.css';
 let destination = document.querySelector("#root");
 
 
