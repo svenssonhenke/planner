@@ -4,6 +4,8 @@ export default class Project extends React.Component {
 
     constructor(props, context){
         super(props, context);
+
+        // state should hold songs and their progress?
     }
 
     render() {

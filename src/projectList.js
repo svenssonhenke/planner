@@ -61,15 +61,11 @@ export default class ProjectList extends React.Component {
     render() {
         return (
             <div className="project-list">
-                <h3>ProjectLista</h3>
-                Ska ha todo-lista på toppnivå också
-                <div className="row">
                     <div className="grid-12">
                         <ol className="columns columns-4-desktop columns-2-tablet columns-1-mobile">
                             {this.createList(this.state.projects)}
                         </ol>
                     </div>
-                </div>
             </div>
         );
     }

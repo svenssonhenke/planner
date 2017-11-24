@@ -6,8 +6,27 @@
 }
 
 .project {
-    padding: 1em;
     margin: 1em;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(146, 210, 144, 0.2);
+
+    h3 {
+        text-align: right;
+        margin-right: 1em;
+        padding-top: 0.5em;
+    }
+
+    .list {
+
+        h4 {
+            padding: 0.5em;
+            border: 1px solid rgba(146, 210, 144, 0.5);
+            background-color: rgba(146, 210, 144, 0.2);
+        }
+        ul {
+            max-height: 300px;
+            margin-left: 2em;
+            overflow-y: auto;
+        }
+    }
 }

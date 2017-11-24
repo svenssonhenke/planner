@@ -12,7 +12,7 @@ export default class SongList extends React.Component {
     render() {
         return (
             <div className="list">
-                <h4>Låtlista</h4>
+                <h4>Tracks</h4>
                 <ul>{this.createList(this.props.list)}</ul>
             </div>
         );
