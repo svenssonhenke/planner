@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProjectList from './projectList';
 import './styles/css/app.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux';
+
 let destination = document.querySelector("#root");
 
-
 ReactDOM.render(
-    <div class="container">
-        <ProjectList />
-    </div>, destination
+    <BrowserRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </BrowserRouter>
+    , destination
 );

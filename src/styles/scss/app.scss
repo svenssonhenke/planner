@@ -1,14 +1,15 @@
 
-.container {
+.root {
     width: 80%;
     margin: auto;
     padding-top: 2em;
 }
 
-.project {
+.project-list-project {
     margin: 1em;
     border-radius: 10px;
     background-color: rgba(146, 210, 144, 0.2);
+    padding-bottom: 1rem;
 
     h3 {
         text-align: right;
@@ -20,7 +21,9 @@
 
         h4 {
             padding: 0.5em;
-            border: 1px solid rgba(146, 210, 144, 0.5);
+            border-color: rgba(146, 210, 144, 0.5); 
+            border-bottom: 1px;
+            border-top: 1px; 
             background-color: rgba(146, 210, 144, 0.2);
         }
         ul {

@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Song extends React.Component {
-
-    constructor(props, context){
-        super(props, context);
-
-        // state with tasks and their progress
-
-    }
+export default class Song extends Component {
 
     render() {
         return (

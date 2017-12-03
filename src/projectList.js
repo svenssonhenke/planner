@@ -1,59 +1,26 @@
 
 import React, { Component } from 'react';
-import Project from './project';
-export default class ProjectList extends React.Component {
+import SongList from './songList';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-    constructor(props, context){
-        super(props, context);
-
-        this.state = {
-            projects: [
-                {
-                    name: "Project1",
-                    songList: [
-                        {name: "song1"},
-                        {name: "song2"},
-                        {name: "song3"},
-                        {name: "song4"}
-                    ]
-                },
-                {
-                    name: "Project2",
-                    songList: [
-                        {name: "song10"},
-                        {name: "song20"},
-                        {name: "song30"},
-                        {name: "song40"}
-                    ]
-                },
-                {
-                    name: "Project3",
-                    songList: [
-                        {name: "song1"},
-                        {name: "song2"},
-                        {name: "song3"},
-                        {name: "song4"},
-                        {name: "song3"},
-                        {name: "song4"}
-                    ]
-                },
-                {
-                    name: "Project4",
-                    songList: [
-                        {name: "song10"},
-                        {name: "song20"}
-                    ]
-                }
-            ]
-        };
-    }
+export class ProjectList extends Component {
 
     createList(list) {
         var projectList = list.map((project) => {
-        return (
-        <li className="column" key={project.name}>
-            <Project name={project.name} songList={project.songList} />
-            </li>)
+            return (
+
+                <li className="column" key={project.name}>
+                    <Link to={`/project/${project.name}`}>
+                        <div className="project-list-project">
+                            <h3>{project.name}</h3>
+                            <SongList list={project.songList} />
+                        </div>
+
+                    </Link>
+                </li>
+
+            )
         });
         return projectList;
     }
@@ -61,12 +28,23 @@ export default class ProjectList extends React.Component {
     render() {
         return (
             <div className="project-list">
-                    <div className="grid-12">
-                        <ol className="columns columns-4-desktop columns-2-tablet columns-1-mobile">
-                            {this.createList(this.state.projects)}
-                        </ol>
-                    </div>
+                <div className="grid-12">
+                    <ol className="columns columns-4-desktop columns-2-tablet columns-1-mobile">
+                        {this.createList(this.props.projects)}
+                    </ol>
+                </div>
             </div>
         );
     }
 };
+
+const mapStateToProps = (state, ownProps) => ({
+    projects: state.projects
+});
+
+
+const ProjectListContainer = connect(
+    mapStateToProps
+)(ProjectList);
+
+export default ProjectListContainer;
