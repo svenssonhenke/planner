@@ -1,21 +1,58 @@
-import {  
+import {
     applyMiddleware,
     combineReducers,
     createStore,
   } from 'redux';
-  
+
+import api from '../api';
+
+export const ADD_PROJECT = "ADD_PROJECT";
+export const ADD_SONG = "ADD_SONG";
+
   //actions.js
-  export const initState = state => ({  
+  export const initState = state => ({
     type: 'INIT',
     state
   });
-  
+
+  export const AddProject = projectName => ({
+    type: ADD_PROJECT,
+    payload: projectName
+  });
+
+  export const SetFetchedState = fetchedState => ({
+    type: 'DATA_LOAD_COMPLETE',
+    payload: fetchedState
+  });
+
+  export const AddSong = (projectName, songName) => ({
+    type: ADD_SONG,
+    payload: {projectName, songName}
+  });
+
   // reducers.js
-  export const reducer = (state = {}, action) => {  
+  export const reducer = (state = {}, action) => {
     switch (action.type) {
         case 'INIT':
-        break;
+          break;
+        case 'DATA_LOAD_COMPLETE':
+        console.log("Data load has ", action.payload);
+            return Object.assign({}, action.payload);
+        case ADD_PROJECT:
+          let newProject = {id: Date.now(), name: action.payload, songList: []};
+          console.log("payload: ", newProject);
+          api.create(newProject);
+          return Object.assign({}, state, {
+            projects:[
+              {
+                name: action.payload,
+                songList: []
+              },
+            ...state.projects,
+            ]
+          });
       default:
+        console.log("reducer action: ", action);
         return state;
     }
   };
@@ -60,15 +97,16 @@ import {
         }
     ]
 };
-  
-//   export const reducers = combineReducers({  
+
+//   export const reducers = combineReducers({
 //     reducer
 //   });
-  
+
   // store.js
-  export function configureStore(initialState = {}) {  
+  export function configureStore(initialState = {}) {
     const store = createStore(reducer, iState);
     return store;
+
   };
-  
-  export const store = configureStore();  
+
+  export const store = configureStore();

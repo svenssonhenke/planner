@@ -3,8 +3,16 @@ import React, { Component } from 'react';
 import SongList from './songList';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AddNewProject from './addProject';
+import { SetFetchedState } from '../redux';
+import api from '../api';
 
 export class ProjectList extends Component {
+
+  constructor(props) {
+    super(props);
+    api.get().then(result => { this.props.dispatch(SetFetchedState(result))});
+  }
 
     createList(list) {
         var projectList = list.map((project) => {
@@ -28,6 +36,7 @@ export class ProjectList extends Component {
     render() {
         return (
             <div className="project-list">
+            <AddNewProject />
                 <div className="grid-12">
                     <ol className="columns columns-4-desktop columns-2-tablet columns-1-mobile">
                         {this.createList(this.props.projects)}
@@ -41,7 +50,6 @@ export class ProjectList extends Component {
 const mapStateToProps = (state, ownProps) => ({
     projects: state.projects
 });
-
 
 const ProjectListContainer = connect(
     mapStateToProps

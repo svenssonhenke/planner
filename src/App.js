@@ -2,23 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import {initState} from './redux';
-import ProjectList from './projectList';
-import Project from './project';
+import ProjectList from './components/projectList';
+import Project from './components/project';
 import './styles/css/app.css';
 
 
 export class App extends React.Component {
-    render() {
+
+  render() {
         return (
+          <div>
             <Switch>
                 <Route exact path="/" component={ProjectList} />
                 <Route path="/project/:id" component={Project} />
             </Switch>
+            </div>
         );
     }
 }
 
-const mapDispatchToProps = {  
+const mapDispatchToProps = {
     initState
   };
 
